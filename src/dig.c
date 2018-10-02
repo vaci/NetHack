@@ -154,11 +154,13 @@ xchar x, y;
             return DIGTYP_BOULDER;
         if (closed_door(x, y))
             return DIGTYP_DOOR;
-        if (IS_WALL(levl[x][y].typ))
-            return DIGTYP_UNDIGGABLE;
-        if (IS_ROCK(levl[x][y].typ) && !level.flags.arboreal)       
+        if (IS_ROCK(levl[x][y].typ)) {
+            if (IS_WALL(levl[x][y].typ))
+                return DIGTYP_UNDIGGABLE;
+            if (!level.flags.arboreal)
+                return DIGTYP_UNDIGGABLE;  
             return DIGTYP_ROCK; 
-
+        }
     } else if (is_axe(otmp)) {
         if (IS_TREE(levl[x][y].typ))
             return DIGTYP_TREE;    
