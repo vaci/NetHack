@@ -149,56 +149,26 @@ xchar x, y;
     if (!otmp)
         return DIGTYP_UNDIGGABLE;
 
-    if (is_pick(otmp))
-    {
+    if (is_pick(otmp)) {
         if (sobj_at(STATUE, x, y))
             return DIGTYP_STATUE;
-      
         if (sobj_at(BOULDER, x, y))
             return DIGTYP_BOULDER;
-      
-       if (closed_door(x, y))
+        if (closed_door(x, y))
             return DIGTYP_DOOR;
-      
-       if (IS_ROCK(levl[x][y].typ))
-       {
-           if (level.flags.arboreal)
-              return DIGTYP_UNDIGGABLE;
-      
-           if (IS_WALL(levl[x][y].typ))
-              return DIGTYP_UNDIGGABLE;
-         
-           return DIGTYP_ROCK;
-       }
-    }
-    else if (is_axe(otmp))
-    {
+        if (IS_WALL(levl[x][y].typ))
+            return DIGTYP_UNDIGGABLE;
+        if (IS_ROCK(levl[x][y].typ)) && !level.flags.arboreal)       
+          return DIGTYP_ROCK; 
+
+    } else if (is_axe(otmp)) {
         if (IS_TREE(levl[x][y].typ))
-            return DIGTYP_TREE;  
-      
+            return DIGTYP_TREE;    
         if (closed_door(x, y))
             return DIGTYP_DOOR;
     }
   
     return DIGTYP_UNDIGGABLE;
-  
-    if (closed_door(x, y))
-        return DIGTYP_DOOR;
-        
-        
-    return ((ispick && sobj_at(STATUE, x, y))
-               ? DIGTYP_STATUE
-               : (ispick && sobj_at(BOULDER, x, y))
-                  ? DIGTYP_BOULDER
-                  : closed_door(x, y)
-                     ? DIGTYP_DOOR
-                     : IS_TREE(levl[x][y].typ)
-                        ? (ispick ? DIGTYP_UNDIGGABLE : DIGTYP_TREE)
-                        : (ispick && IS_ROCK(levl[x][y].typ)
-                           && (!level.flags.arboreal
-                               || IS_WALL(levl[x][y].typ)))
-                           ? DIGTYP_ROCK
-                           : DIGTYP_UNDIGGABLE);
 }
 
 boolean
