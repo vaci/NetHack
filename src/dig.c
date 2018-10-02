@@ -144,8 +144,6 @@ dig_typ(otmp, x, y)
 struct obj *otmp;
 xchar x, y;
 {
-    boolean ispick;
-
     if (!otmp)
         return DIGTYP_UNDIGGABLE;
 
