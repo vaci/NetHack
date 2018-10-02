@@ -157,7 +157,7 @@ xchar x, y;
         if (IS_ROCK(levl[x][y].typ)) {
             if (IS_WALL(levl[x][y].typ))
                 return DIGTYP_UNDIGGABLE;
-            if (!level.flags.arboreal)
+            if (level.flags.arboreal)
                 return DIGTYP_UNDIGGABLE;  
             return DIGTYP_ROCK; 
         }
