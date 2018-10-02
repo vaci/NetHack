@@ -159,7 +159,7 @@ xchar x, y;
         if (IS_WALL(levl[x][y].typ))
             return DIGTYP_UNDIGGABLE;
         if (IS_ROCK(levl[x][y].typ)) && !level.flags.arboreal)       
-          return DIGTYP_ROCK; 
+            return DIGTYP_ROCK; 
 
     } else if (is_axe(otmp)) {
         if (IS_TREE(levl[x][y].typ))
